@@ -39,7 +39,7 @@ router.delete('/:id', (req, res, next) => {
 });
 
 // Get all ingredients for a recipe
-router.get('/:id', (req, res, next) => {
+router.get('/:id', (req, res, next) => {n
 
 });
 
