@@ -1,0 +1,20 @@
+{
+  "name": "hotsauce-recipes",
+  "version": "1.0.0",
+  "description": "A utilty to track hotsauce recipes while expirementing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jason Prickett",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-errors": "^1.7.3",
+    "mongoose": "^5.6.8"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.1",
+    "nodemon": "^1.19.1"
+  }
+}
