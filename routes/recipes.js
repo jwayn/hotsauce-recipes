@@ -6,54 +6,80 @@ const Recipe = require('../models/recipes');
 
 
 // get all recipes
-router.get('/', (req, res, next) => {
-    res.status(200).json({
+router.get('/', async (req, res, next) => {
+    try {
+        const recipes = await Recipe.find();
+        res.json(recipes)
+    } catch (err) {
+        next(err);
+    }
+});
 
-    })
+//get a recipe by id
+router.get('/id=:id', async (req, res, next) => {
+    try {
+        const recipe = await Recipe.findById(req.params.id);
+        res.json(recipe);
+    } catch (err) {
+        next(err);
+    }
 });
 
 // create a new recipe
 router.post('/', async (req, res, next) => {
-    new Recipe({
+    const recipe = new Recipe({
         _id: new mongoose.Types.ObjectId(),
-        name: req.body.name
+        name: req.body.name,
     });
 
     try {
-        let result = await Recipe.save();
+        const result = await recipe.save();
         res.json(result);
     } catch (err) {
         console.log(err);
         res.status(500);
+        next(err);
     }
 });
 
-// update a recipe name
-router.put('/:id', (req, res, next) => {
+// update a recipe
+router.patch('/id=:id', async (req, res, next) => {
+    try {
+        const recipe = {};
+        for (const props of req.body) {
+            recipe[props.property] = props.value;
+        }
+        const result = await Recipe.update({_id: req.params.id}, {$set: recipe});
+    } catch (err) {
+        next(err);
+    }
 
 });
 
 // delete a recipe
-router.delete('/:id', (req, res, next) => {
+router.delete('/id=:id', async (req, res, next) => {
+    try {
+        await Recipe.deleteOne({_id: req.params.id});
+        res.sendStatus(200);
+        
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.patch('/id=:id/ingredient', async (req, res, next) => {
+    try {
+        const ingredient = {}
+        for(const props of req.body) {
+            ingredient[props.property] = props.value;
+        };
+    
+        const recipe = await Recipe.update({_id: req.params.id}, {$push: {ingredients: ingredient}});
+        res.json(recipe);
+    } catch (err) {
+        next(err);
+    }
 
 });
 
-// Get all ingredients for a recipe
-router.get('/:id', (req, res, next) => {n
-
-});
-
-// Add an ingredient to an existing recipe
-router.post('/:id/ingredient', (req, res, next) => {
-
-});
-
-// Update an ingredient on an existing recipe
-router.put('/:id/ingredient', (req, res, next) => {
-
-});
-
-// Delete an ingredient from an existing recipe
-router.delete('/:id/ingredient', (req, res, next) => {
-
-});
+module.exports = router;

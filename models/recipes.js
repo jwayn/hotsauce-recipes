@@ -2,11 +2,13 @@ const mongoose = require('mongoose');
 
 const recipeSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    name: String,
+    name: {type: String, default: 'Unnamed'},
+    created: {type: Date, default: Date.now},
     ingredients: [{
-        ingredient: String,
+        id: mongoose.Schema.Types.ObjectId,
+        name: String,
         weight: String
     }]
 });
 
-module.exports('Recipe', recipeSchema);
+module.exports = mongoose.model('Recipe', recipeSchema);
