@@ -29,7 +29,7 @@ function App() {
         <RecipeList clickRecipe={clickRecipe} recipes={recipes}/>
       }
       {activeRecipe && 
-        <Recipe id={activeRecipe} recipe={recipes.filter(recipe => recipe._id === activeRecipe)} />
+        <Recipe id={activeRecipe} setActiveRecipe={setActiveRecipe} updateData={fetchData} recipe={recipes.filter(recipe => recipe._id === activeRecipe)} />
       }
       {!activeRecipe &&
         <AddRecipeButton reloadRecipes={fetchData} />

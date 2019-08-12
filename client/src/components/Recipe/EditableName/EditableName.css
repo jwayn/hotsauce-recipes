@@ -1,0 +1,23 @@
+.editableName {
+    width: 100%;
+}
+
+.title__name {
+    text-align: right;
+    margin: 0;
+    font-size: 36px;
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 2px 4px 5px rgba(0, 0, 0, .4);
+    padding: 10px 0;
+}
+
+.title__name--editable {
+    margin: 0;
+    font-size: 36px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px;
+    height: 56px;
+    border: none;
+    text-align: right;
+    width: 100%;
+}
