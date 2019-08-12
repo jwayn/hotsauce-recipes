@@ -67,6 +67,8 @@ router.delete('/id=:id', async (req, res, next) => {
     }
 });
 
+
+// Add an ingredient to a recipe
 router.patch('/id=:id/ingredient', async (req, res, next) => {
     try {
         const ingredient = {}
@@ -79,7 +81,17 @@ router.patch('/id=:id/ingredient', async (req, res, next) => {
     } catch (err) {
         next(err);
     }
+});
 
+
+// Update a recipe
+router.put ('/id=:id', async (req, res, next) => {
+    try {
+        const recipe = await Recipe.update({_id: req.params.id}, {$set: req.body});
+        res.json(recipe);
+    } catch (err) {
+        next(err);
+    }
 });
 
 module.exports = router;

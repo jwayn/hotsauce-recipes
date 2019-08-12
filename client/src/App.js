@@ -1,24 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+
+import RecipeList from './components/RecipeList';
+import Recipe from './components/Recipe';
+import AddRecipeButton from './components/AddRecipeButton';
 import './App.css';
 
 function App() {
+  const [activeRecipe, setActiveRecipe] = useState(null);
+  const [recipes, setRecipes] = useState(['recipe']);
+
+  async function fetchData() {
+      const rawRes = await fetch('/api/recipes')
+      const response = await rawRes.json();
+      setRecipes(response)
+  }
+
+  useEffect(() => {
+      fetchData();
+  }, []);
+
+  const clickRecipe = function(recipeId) {
+    setActiveRecipe(recipeId);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!activeRecipe && 
+        <RecipeList clickRecipe={clickRecipe} recipes={recipes}/>
+      }
+      {activeRecipe && 
+        <Recipe id={activeRecipe} recipe={recipes.filter(recipe => recipe._id === activeRecipe)} />
+      }
+      {!activeRecipe &&
+        <AddRecipeButton reloadRecipes={fetchData} />
+      }
     </div>
   );
 }
