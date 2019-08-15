@@ -1,9 +1,21 @@
-import React from 'react'
+import React from 'react';
 
-export default function Notes() {
+import Note from './Note';
+
+import './Notes.css';
+
+export default function Notes(props) {
+
     return (
         <div>
-            
+            <ul className="notes">
+                {props.notes.map(note => {
+                    console.log(note);
+                    return(
+                        <Note updateData={props.updateData} recipeId={props.recipeId} key={note._id} note={note} />
+                    )
+                })}
+            </ul>
         </div>
     )
 }

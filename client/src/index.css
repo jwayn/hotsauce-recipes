@@ -41,9 +41,40 @@ button {
   font-family: 'Roboto', sans-serif;
   height: 50px;
   margin: 15px 0;
+  cursor: pointer;
 }
 
 .btn--delete {
   background-color: #777777;
   color: #FFFFFE;
+}
+
+.container--padded {
+  padding: 5px 15px;
+}
+
+section {
+  margin-bottom: 25px;
+  margin-top: 5px;
+}
+
+i {
+  font-size: 64px;
+}
+
+.back-button {
+  justify-self: flex-start;
+  align-self: flex-start;
+  border-radius: 50%;
+  background-color: #E84241;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .4);
+  cursor: pointer;
+  font-size: 36px;
+  transform: scaleX(-1);
 }

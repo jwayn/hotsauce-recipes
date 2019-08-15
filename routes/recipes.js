@@ -42,14 +42,11 @@ router.post('/', async (req, res, next) => {
     }
 });
 
-// update a recipe
+// Update a recipe
 router.patch('/id=:id', async (req, res, next) => {
     try {
-        const recipe = {};
-        for (const props of req.body) {
-            recipe[props.property] = props.value;
-        }
-        const result = await Recipe.update({_id: req.params.id}, {$set: recipe});
+        const result = await Recipe.updateOne({_id: req.params.id}, req.body);
+        res.json(result);
     } catch (err) {
         next(err);
     }
@@ -59,13 +56,31 @@ router.patch('/id=:id', async (req, res, next) => {
 // delete a recipe
 router.delete('/id=:id', async (req, res, next) => {
     try {
-        await Recipe.deleteOne({_id: req.params.id});
-        res.sendStatus(200);
+        const result = await Recipe.deleteOne({_id: req.params.id});
+        res.json(result);
         
     } catch (err) {
         next(err);
     }
 });
+
+router.delete('/id=:id/notes/id=:noteId', async (req, res, next) => {
+    try {
+        const result = await Recipe.findByIdAndUpdate({_id: req.params.id}, {$pull: {notes: {_id: req.params.noteId}}});
+        res.json(result)
+    } catch (err) {
+        next(err);
+    }
+})
+
+router.delete('/id=:id/ingredient/id=:ingredientId', async (req, res, next) => {
+    try {
+        const result = await Recipe.findByIdAndUpdate({_id: req.params.id}, {$pull: {ingredients: {_id: req.params.ingredientId}}});
+        res.json(result)
+    } catch (err) {
+        next(err);
+    }
+})
 
 
 // Add an ingredient to a recipe
@@ -76,7 +91,16 @@ router.patch('/id=:id/ingredient', async (req, res, next) => {
             ingredient[props.property] = props.value;
         };
     
-        const recipe = await Recipe.update({_id: req.params.id}, {$push: {ingredients: ingredient}});
+        const recipe = await Recipe.updateOne({_id: req.params.id}, {$push: {ingredients: ingredient}});
+        res.json(recipe);
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.patch('/id=:id/notes', async (req, res, next) => {
+    try {
+        const recipe = await Recipe.updateOne({_id: req.params.id}, {$push: {notes: req.body.note}});
         res.json(recipe);
     } catch (err) {
         next(err);

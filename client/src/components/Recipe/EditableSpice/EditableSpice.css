@@ -1,0 +1,11 @@
+.editableSpice {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+.editableSpice svg {
+    cursor: pointer;
+    max-width: 75px;
+}

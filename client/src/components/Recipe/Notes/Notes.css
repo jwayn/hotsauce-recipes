@@ -1,0 +1,16 @@
+.notes {
+    color: #FFFFFE;
+}
+
+.notes__item {
+    font-size: 22px;
+    margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.notes__item__delete {
+    max-width: 250px;
+    font-size: 16px;
+    align-self: center;
+}

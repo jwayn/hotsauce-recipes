@@ -11,7 +11,10 @@ const recipeSchema = mongoose.Schema({
     }],
     rating: {type: Number, default: 0},
     spice: {type: Number, default: 0},
-    notes: [String]
+    notes: [{
+            id: mongoose.Schema.Types.ObjectId,
+            note: String
+    }]
 });
 
 module.exports = mongoose.model('Recipe', recipeSchema);

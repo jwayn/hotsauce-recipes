@@ -15,10 +15,6 @@
     padding: 15px;
 }
 
-.recipe__main {
-    padding: 15px;
-}
-
 .sectionLabel {
     color: #808080;
     font-family: 'Roboto', sans-serif;
@@ -43,6 +39,8 @@
     border: none;
     border-radius: 5px;
     background-color: #FFFFFE;
+    padding: 15px;
+    font-size: 18px;
 }
 
 .recipe__ingredientAdd label {
@@ -63,4 +61,18 @@
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
     margin-top: 15px;
+}
+
+.recipe__ingredientAdd textarea {
+    min-height: 250px;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.rating--interactive {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

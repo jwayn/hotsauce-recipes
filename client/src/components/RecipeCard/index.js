@@ -18,11 +18,11 @@ export default function RecipeCard(props) {
                 <span>
                     {props.recipe.name}
                 </span>
-                {moment(props.recipe.created).format('MM/YY/DD')}
+                {moment(props.recipe.created).format('MM/DD/YYYY')}
             </div>
             <div className="recipeCard__body">
-                <SpiceLevel spice={props.recipe.spice} />
                 <Rating rating={props.recipe.rating} />
+                <SpiceLevel spice={props.recipe.spice} />
             </div> 
         </div>
     )
