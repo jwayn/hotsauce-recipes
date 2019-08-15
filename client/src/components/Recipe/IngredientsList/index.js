@@ -9,7 +9,7 @@ export default function IngredientsList(props) {
         <div className="ingredientsList">
             {props.ingredients.map(ingredient => {
                 return(
-                    <Ingredient ingredient={ingredient} />
+                    <Ingredient key={ingredient._id} ingredient={ingredient} />
                 )
             })}
         </div>
