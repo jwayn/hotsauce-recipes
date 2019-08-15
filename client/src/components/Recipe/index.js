@@ -30,7 +30,6 @@ export default function Recipe(props) {
         e.preventDefault();
 
         let note = {note: notesInput.current.value};
-        console.log(note);
 
         await fetch(`/api/recipes/id=${recipe._id}/notes`, {
             method: 'PATCH',

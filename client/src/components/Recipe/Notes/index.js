@@ -10,7 +10,6 @@ export default function Notes(props) {
         <div>
             <ul className="notes">
                 {props.notes.map(note => {
-                    console.log(note);
                     return(
                         <Note updateData={props.updateData} recipeId={props.recipeId} key={note._id} note={note} />
                     )

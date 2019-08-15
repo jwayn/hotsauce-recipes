@@ -28,5 +28,9 @@
 
 .ingredientsList__item__delete {
     font-size: 16px;
-    color: #777777;
+    color: #FFFFFE;
+    cursor: pointer;
+    background-color: #E84241;
+    padding: 5px;
+    border-radius: 5px;
 }
