@@ -9,7 +9,7 @@ export default function AddRecipeButton(props) {
 
     return (
         <div className="addRecipeButton" onClick={addRecipe}>
-            
+            +
         </div>
     )
 }

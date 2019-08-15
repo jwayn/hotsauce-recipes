@@ -1,7 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb+srv://hotsauce:${process.env.MONGO_PASS}@hotsauce-7z3xp.azure.mongodb.net/test?retryWrites=true&w=majority`)
+try {
+    mongoose.connect(`mongodb+srv://hotsauce:${process.env.MONGO_PASS}@hotsauce-7z3xp.azure.mongodb.net/test?retryWrites=true&w=majority`)
+} catch (err) {
+    console.error(err);
+}
 
 //Routes imports
 const recipes = require('./routes/recipes');
@@ -16,8 +20,6 @@ app.use('/api/recipes', recipes);
 
 
 app.use(express.static(__dirname + '/public'));
-
-
 
 //error handler middleware
 app.use(function(err, req, res, next) {

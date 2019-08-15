@@ -10,16 +10,13 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, .4);
     cursor: pointer;
     transition: all 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFE;
 }
 
 .addRecipeButton:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, .4);
-}
-
-.addRecipeButton::after {
-    content: "+";
-    position: absolute;
-    transform: translate(35px, 15px);
-    color: #FFFFFE;
 }
